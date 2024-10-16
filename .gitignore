@@ -87,8 +87,8 @@
 # already ignored. We must also ignore these generated files.
 /web/**/.gitignore
 /.ddev
-/web/sites/default/settings.php
-/web/sites/default/settings.ddev.php
+# /web/sites/default/settings.php
+# /web/sites/default/settings.ddev.php
 
 /web/themes/contrib/*
 
