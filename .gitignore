@@ -90,6 +90,7 @@
 /web/sites/default/settings.php
 /web/sites/default/settings.ddev.php
 
+/web/themes/contrib/*
 
 # Other common rules
 # ------------------
