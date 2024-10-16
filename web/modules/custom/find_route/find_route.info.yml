@@ -1,0 +1,5 @@
+name: 'Find Route'
+type: module
+description: 'Provides a form to find transit routes.'
+core_version_requirement: ^8 || ^9
+package: Custom

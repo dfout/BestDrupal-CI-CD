@@ -1,0 +1,81 @@
+<?php
+
+namespace Drupal\find_route\Form; // Adjust to match your module's namespace.
+
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface; // Import MessengerInterface
+
+class FindRouteForm extends FormBase {
+    protected $messenger; // Add a protected property to hold the Messenger service.
+
+    public function __construct(MessengerInterface $messenger) {
+        $this->messenger = $messenger; // Initialize the Messenger service.
+    }
+
+    public function getFormId() {
+        return 'find_route_form';
+    }
+
+    public function buildForm(array $form, FormStateInterface $form_state) {
+        $form['start_address'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('Start Address'),
+            '#required' => TRUE,
+        ];
+
+        $form['destination_address'] = [
+            '#type' => 'textfield',
+            '#title' => $this->t('Destination Address'),
+            '#required' => TRUE,
+        ];
+
+        $form['submit'] = [
+            '#type' => 'submit',
+            '#value' => $this->t('Find Route'),
+        ];
+
+        return $form;
+    }
+
+    public function submitForm(array &$form, FormStateInterface $form_state) {
+        // Get the user input values.
+        $start = $form_state->getValue('start_address');
+        $destination = $form_state->getValue('destination_address');
+
+        // Logic to find the best route.
+        $best_route = $this->findBestRoute($start, $destination);
+
+        // Provide feedback to the user.
+        if ($best_route) {
+            $this->messenger->addMessage($this->t('The best route from @start to @destination is: @route', [
+                '@start' => $start,
+                '@destination' => $destination,
+                '@route' => $best_route,
+            ]));
+        } else {
+            $this->messenger->addMessage($this->t('No route found from @start to @destination.', [
+                '@start' => $start,
+                '@destination' => $destination,
+            ]), 'error');
+        }
+    }
+
+    private function findBestRoute($start, $destination) {
+        // Implement your actual route finding logic here.
+        // For example, you can query a predefined list of routes and stops.
+        $routes = [
+            'Route A' => ['start' => 'Location 1', 'destination' => 'Location 2'],
+            'Route B' => ['start' => 'Location 3', 'destination' => 'Location 4'],
+            // Add more routes as needed.
+        ];
+
+        foreach ($routes as $route_name => $route) {
+            if ($route['start'] === $start && $route['destination'] === $destination) {
+                return $route_name; // Return the route name if found.
+            }
+        }
+
+        return NULL; // Return NULL if no route matches.
+    }
+}
