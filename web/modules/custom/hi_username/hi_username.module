@@ -1,22 +1,30 @@
 <?php
 
 /**
+ * @file
+ * Custom module to display the username on the front page.
+ */
+
+/**
  * Implements hook_preprocess_HOOK() for page templates.
  */
-function my_custom_module_preprocess_page(array &$variables) {
+function hi_username_my_custom_module_preprocess_page(array &$variables) {
   // Get the current user.
   $current_user = \Drupal::currentUser();
 
   // Check if the user is authenticated.
   if ($current_user->isAuthenticated()) {
     // Get the user's username.
-    $username = $current_user->getAccountName(); 
+    $username = $current_user->getAccountName();
 
     // Render the username on the front page.
     if (\Drupal::routeMatch()->getRouteName() == '<front>') {
       $variables['page']['content']['user_username'] = [
         '#markup' => '<p>Welcome, ' . $username . '!</p>',
       ];
+
+      // Debug message to confirm the module is running.
+      \Drupal::messenger()->addMessage('Custom module is working and user is ' . $username);
     }
   }
 }
