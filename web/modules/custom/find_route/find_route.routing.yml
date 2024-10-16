@@ -1,0 +1,7 @@
+find_route.form:
+  path: '/find-route'
+  defaults:
+    _form: '\Drupal\find_route\Form\FindRouteForm'
+    _title: 'Find a Route'
+  requirements:
+    _permission: 'access content'
