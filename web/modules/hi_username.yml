@@ -1,0 +1,7 @@
+name: 'My Custom Module'
+type: module
+description: 'A custom module to display the user’s username on the front page.'
+core_version_requirement: ^11 || ^10
+package: Custom
+dependencies:
+  - drupal:user
