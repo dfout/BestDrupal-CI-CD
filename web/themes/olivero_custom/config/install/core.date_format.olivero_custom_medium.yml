@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    theme:
+      - olivero_custom        # Change this to your custom theme
+id: olivero_custom_medium       # Update the id to avoid conflict
+label: 'Olivero Custom Medium'  # Optionally change the label to reflect the custom theme
+locked: false
+pattern: 'j  F,  Y'
