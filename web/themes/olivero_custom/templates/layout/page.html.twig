@@ -47,8 +47,6 @@
 #}
 
 {# Debugging output to ensure this file is used #}
-<div class="template-debug">Using custom page.html.twig template</div>
-
 
 <div id="page-wrapper" class="page-wrapper">
 	<div id="page">
@@ -93,13 +91,6 @@
 				</div>
 			</header>
 		{% endif %}
-
-		{% if page.content.user_username %}
-			<div class="welcome-message">
-				{{ page.content.user_username }}
-			</div>
-		{% endif %}
-
 		<div id="main-wrapper" class="layout-main-wrapper layout-container">
 			<div id="main" class="layout-main">
 				<div class="main-content">
